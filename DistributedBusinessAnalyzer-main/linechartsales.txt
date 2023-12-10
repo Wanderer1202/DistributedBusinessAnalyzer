@@ -1,0 +1,20 @@
+def showgraph():
+    x_column = "Date"  # X axis will always be Date
+    y_column = ycombovalue.get()
+    color_option = colorvalue.get()
+    
+    if y_column:
+        filtered_df = apply_filters(merged_df2)
+        result=filtered_df[y_column].groupby(filtered_df[x_column]).sum()
+        xaxis = result.index
+        yaxis = result.values
+        #sorted_data = sorted(zip(filtered_df[x_column], filtered_df[y_column]))
+
+        #sorted_dates, sorted_values = zip(*sorted_data)
+        plt.plot(xaxis, yaxis, marker='o', color=color_option)
+        plt.xlabel(x_column)
+        plt.ylabel(y_column)
+        plt.title(f"{y_column} over Time")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
